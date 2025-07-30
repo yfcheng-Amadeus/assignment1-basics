@@ -142,6 +142,7 @@ def test_roundtrip_single_unicode_character():
     test_string = "🙃"
     encoded_ids = tokenizer.encode(test_string)
     decoded_string = tokenizer.decode(encoded_ids)
+    assert encoded_ids == tokenizer.encode(test_string)
     assert test_string == decoded_string
 
 
@@ -285,6 +286,7 @@ def test_address_matches_tiktoken():
         corpus_contents = f.read()
     reference_ids = reference_tokenizer.encode(corpus_contents)
     ids = tokenizer.encode(corpus_contents)
+
     assert ids == reference_ids
 
     assert tokenizer.decode(ids) == corpus_contents
